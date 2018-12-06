@@ -3,22 +3,37 @@ import React, { Component } from 'react';
 import './App.css';
 
 let fakeConcertData = {
-  results: 
-    [
+  user: {
+    name: 'Ryan',
+    eventList: [
       {
         eventName: 'Shawn Mendes: The  Tour',
         location: 'TD Garden - Boston, MA',
         date: 'August 15, 2019',
-        price: '$45-$650'
+        price: '$45-$650',
+        image: 'https://media.ticketmaster.com/en-us/dam/a/477/c81f5790-e79c-4677-9f93-fbbeffb4b477_731891_EVENT_DETAIL_PAGE_16_9.jpg',
+        link: 'https://www1.ticketmaster.com/shawn-mendes-the-tour/event/010054A8863925E5'
       },
       {
         eventName: 'Ariana Grande: Sweetener World Tour',
         location: 'TD Garden - Boston, MA',
         date: 'March 20, 2019',
-        price: '$130-$240'
+        price: '$130-$240',
+        image: 'https://media.ticketmaster.com/en-us/dam/a/8c2/1e84234c-695c-4f3f-931a-a3ade43038c2_879001_EVENT_DETAIL_PAGE_16_9.jpg',
+        link: 'https://www1.ticketmaster.com/ariana-grande-sweetener-world-tour/event/0100555900E0A714'
+      },
+      {
+        eventName: 'Backstreet Boys: DNA World Tour',
+        location: 'TD Garden - Boston, MA',
+        date: 'August 14, 2019',
+        price: '$44-$189',
+        image:'https://media.ticketmaster.com/en-us/dam/a/14b/5d967e1e-df58-4b6f-b872-223203a4e14b_890641_EVENT_DETAIL_PAGE_16_9.jpg',
+        link: 'https://www1.ticketmaster.com/backstreet-boys-dna-world-tour/event/01005567C318587F'
       }
     ]
+  }
 }
+
 
 let fakeServerData = {
   user: {
@@ -44,24 +59,24 @@ let fakeServerData = {
           }
         ]
       }
-      ,{
-        name: 'Favorites 2.0',
-        songs:
-        [
-          {
-            name: 'Take On Me',
-            artist: 'a-ha',
-            image: 'https://pbs.twimg.com/profile_images/378800000449803620/e12d8bea1efbc92efa629ded35d22719_400x400.jpeg',
-            link: 'https://open.spotify.com/track/2WfaOiMkCvy7F5fcp2zZ8L?si=7QOIA7a8T0etCbPX5_IOUw'
-          }
-          ,{
-            name: 'Careless Whisper',
-            artist: 'George Michael',
-            image: 'https://www.carillonstudios.com/image/cache/data/SingleStyles/carelesswhisperx200-350x350.jpg',
-            link: 'https://open.spotify.com/track/4jDmJ51x1o9NZB5Nxxc7gY?si=PmMAbA9rSq-pp5clMdt-Yg'
-          }
-        ]
-      }
+      // ,{
+      //   name: 'Favorites 2.0',
+      //   songs:
+      //   [
+      //     {
+      //       name: 'Take On Me',
+      //       artist: 'a-ha',
+      //       image: 'https://pbs.twimg.com/profile_images/378800000449803620/e12d8bea1efbc92efa629ded35d22719_400x400.jpeg',
+      //       link: 'https://open.spotify.com/track/2WfaOiMkCvy7F5fcp2zZ8L?si=7QOIA7a8T0etCbPX5_IOUw'
+      //     }
+      //     ,{
+      //       name: 'Careless Whisper',
+      //       artist: 'George Michael',
+      //       image: 'https://www.carillonstudios.com/image/cache/data/SingleStyles/carelesswhisperx200-350x350.jpg',
+      //       link: 'https://open.spotify.com/track/4jDmJ51x1o9NZB5Nxxc7gY?si=PmMAbA9rSq-pp5clMdt-Yg'
+      //     }
+      //   ]
+      // }
     ]
   }
 }
@@ -149,40 +164,40 @@ class Table extends Component {
   }
 }
 
-class Table2 extends Component {
+class ConcertDisplay extends Component {
   render () {
     return (
-      <div className="Results">
+      <div className='ConcertDisplay'>
         <table className="ResultsTable">
-        <tr>
-          <td className='imagecell'>
-            <div className="imgcontainer">
-              <center>
-              <img src="http://chittagongit.com//images/default-profile-icon/default-profile-icon-4.jpg">
-              </img>
-              </center>
-            </div> 
-          </td>
-          <td className="textcell">
-            <div> {/* Table Div */}
-              <table className="texttable">
-              <tr>
-                <td>Event Name</td>
-                <td>Location </td>
-              </tr>
-              <tr>
-                <td>Venue</td>
-                <td>Price</td>
-              </tr>
-              </table>
-            </div>
-          </td>
-          <td className="buttoncell">
-            <div> {/* Button Div */}
-              <button><a href="https:google.com" target='_blank'> View Event </a> </button>
-            </div>
-          </td>
-        </tr>
+          <tr>
+            <td className='imagecell'>
+              <div className="imgcontainer">
+                <center>
+                <img src={this.props.events.image}>
+                </img>
+                </center>
+              </div> 
+            </td>
+            <td className="textcell">
+              <div> {/* Table Div */}
+                <table className="texttable">
+                <tr>
+                  <td>{this.props.events.eventName}</td>
+                  <td>{this.props.events.location}</td>
+                </tr>
+                <tr>
+                  <td>{this.props.events.date}</td>
+                  <td>{this.props.events.price}</td>
+                </tr>
+                </table>
+              </div>
+            </td>
+            <td className="buttoncell">
+              <div> {/* Button Div */}
+                <button><a href={this.props.events.link} target='_blank'> View Event </a> </button>
+              </div>
+            </td>
+          </tr>
         </table>
       </div>
     )
@@ -191,38 +206,49 @@ class Table2 extends Component {
 
 class App extends Component {
 
-  constructor(){
+  // constructor(){
+  //   super()
+  //   this.state = {serverData: {}}
+  // }
+
+  // componentDidMount() {
+  //   setTimeout ( () => {
+  //     this.setState({serverData: fakeServerData});
+  //   },1000)
+  // }
+
+    constructor(){
     super()
     this.state = {serverData: {}}
   }
 
   componentDidMount() {
     setTimeout ( () => {
-      this.setState({serverData: fakeServerData});
+      this.setState({serverData: fakeConcertData});
     },1000)
   }
 
-  render() {
-    // let songList = []
-    // if (this.state.serverData.user) {
-    //   this.state.serverData.user.playlists.songs.forEach(song =>
-    //     songList.push(<Table2/>)
-    //     )
-    // }
 
+  render() {
     return (
+
       <div className="App">
         <h1>
-        Hello {this.state.serverData.user && 
-               this.state.serverData.user.name}
+          Concerts
         </h1>
         <center>
         {this.state.serverData.user &&
+         this.state.serverData.user.eventList.map(events =>
+          <ConcertDisplay events={events}/>)
+       }
+
+
+        {/*this.state.serverData.user &&
          this.state.serverData.user.playlists.map(playlist => 
           <Table playlist={playlist}/>
           )
-        }
-        <Test/>
+        */}
+
         {/*this.state.serverData.user &&
          this.state.serverData.user.playlists.map(playlist => 
           <h1> {playlist.name} </h1>
