@@ -34,7 +34,7 @@ class Table extends Component {
           </td>
           <td className="buttoncell">
             <div> {/* Button Div */}
-              <button> View Eveny </button>
+              <button> View Event </button>
             </div>
           </td>
         </tr>
@@ -50,6 +50,9 @@ class App extends Component {
       <div className="App">
         <h1> Spotify </h1>
         <center>
+        <Table/>
+        <Table/>
+        <Table/> 
         <Table/>
         <Table/>
         </center>
