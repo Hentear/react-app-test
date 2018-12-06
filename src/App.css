@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+
+.Results{
+  position: relative;
+  width:50%;
+  padding-bottom: 5%;
+}
+
+.ResultsTable{
+  border: 1px solid black;
+  height:100px;
+}
+
+.imgcontainer{
+  height: 100px;
+}
+
+.imagecell{
+  width: 30%;
+}
+
+.textcell{
+  width:50%;
+  text-align: center;
+}
+
+.texttable{
+  width: 80%;
+  height: 100px;
+}
+
+.buttoncell{
+  width: .5%;
+}
+
+img{
+  width:90%;
+}
