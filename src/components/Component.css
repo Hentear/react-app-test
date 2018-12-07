@@ -1,6 +1,6 @@
-/*.App {
+.Example {
   text-align: center;
-}*/
+}
 
 .ConcertDisplay{
   position: relative;
@@ -35,7 +35,7 @@
   width: auto;
 }
 
-img{
+.eventimage{
   width:auto;
   height: 100px;
 }
