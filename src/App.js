@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-//import './App.css';
-import Navbar from './components/Navbar'
-import { BrowserRouter, Route } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import Example from './components/Example'
+import './App.css';
 
 let fakeConcertData = {
   user: {
@@ -38,44 +33,18 @@ let fakeConcertData = {
   }
 }
 
-
-class Test extends Component {
-  render () {
-    return (
-        <table className="ResultsTable">
-          <tr>
-            <td className='imagecell'>
-              <div className="imgcontainer">
-                <center>
-                <img src="http://chittagongit.com//images/default-profile-icon/default-profile-icon-4.jpg">
-                </img>
-                </center>
-              </div> 
-            </td>
-            <td className="textcell">
-              <div> {/* Table Div */}
-                <table className="texttable">
-                <tr>
-                  <td>Event Name</td>
-                  <td>Location</td>
-                </tr>
-                <tr>
-                  <td>Date</td>
-                  <td>Price</td>
-                </tr>
-                </table>
-              </div>
-            </td>
-            <td className="buttoncell">
-              <div> {/* Button Div */}
-                <button><a href="https:google.com" target='_blank'> View Event </a> </button>
-              </div>
-            </td>
-          </tr>
-        </table>
-      )
-  }
+const Navbar = () => {
+  return (
+    <nav className="nav-wrapper red darken-3">
+      <div className="container">
+        <center>
+        <a className="logo">CS411 Home Page</a>
+        </center>
+      </div>
+    </nav>
+  )
 }
+
 
 class ConcertDisplay extends Component {
   render () {
@@ -86,7 +55,7 @@ class ConcertDisplay extends Component {
             <td className='imagecell'>
               <div className="imgcontainer">
                 <center>
-                <img src={this.props.events.image}>
+                <img className='eventimage' src={this.props.events.image}>
                 </img>
                 </center>
               </div> 
@@ -107,7 +76,7 @@ class ConcertDisplay extends Component {
             </td>
             <td className="buttoncell">
               <div> {/* Button Div */}
-                <button><a href={this.props.events.link} target='_blank'> View Event </a> </button>
+                <button><a href={this.props.events.link} target='_blank' rel="noopener noreferrer"> View Event </a> </button>
               </div>
             </td>
           </tr>
@@ -117,46 +86,48 @@ class ConcertDisplay extends Component {
   }
 }
 
+class Example extends Component {
+    constructor(){
+    super()
+    this.state = {serverData: {}}
+  }
 
-// class App2 extends Component {
-//     constructor(){
-//     super()
-//     this.state = {serverData: {}}
-//   }
-//   componentDidMount() {
-//     setTimeout ( () => {
-//       this.setState({serverData: fakeConcertData});
-//     },1000)
-//   }
-//   render() {
-//     return (
-//       // Change back after
-//       <div className="App2"> 
-//         <h1>
-//           Concerts
-//         </h1>
-//         <center>
-//         {this.state.serverData.user &&
-//          this.state.serverData.user.eventList.map(events =>
-//           <ConcertDisplay events={events}/>)
-//         }
-//         </center>
-//       </div>
-//     );
-//   }
-// }
+  componentDidMount() {
+    setTimeout ( () => {
+      this.setState({serverData: fakeConcertData});
+    },1000)
+  }
+  
+
+  render() {
+    return (
+      // Change back after
+      <div className="Example">
+      {this.state.serverData.user ? 
+        <div>
+          <h1> Concerts </h1>
+          <center>
+          {this.state.serverData.user.eventList.map(events =>
+            <ConcertDisplay events={events}/>)
+          }
+          </center>
+        </div> : <button onClick={() => window.location='http://localhost:8888/login'}
+        style={{padding: '20px', 'fontSize': '50px', 'marginTop': '20px'}}> Sign in with Spotify </button>
+      }
+      </div>
+    );
+  } 
+}
 
 class App extends Component {
   render () {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Navbar />
-          <Route path='/home' component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/example' component={Example} />
-        </div>
-      </BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <center>
+        <Example />
+        </center>
+      </div>
     );
   }
 }
