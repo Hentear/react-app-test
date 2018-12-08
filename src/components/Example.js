@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Component.css';
+import queryString from 'query-string';
 
 let fakeConcertData = {
   user: {
@@ -63,7 +64,7 @@ class ConcertDisplay extends Component {
             </td>
             <td className="buttoncell">
               <div> {/* Button Div */}
-                <button><a href={this.props.events.link} target='_blank'> View Event </a> </button>
+                <button><a href={this.props.events.link} target='_blank' rel="noopener noreferrer"> View Event </a> </button>
               </div>
             </td>
           </tr>
@@ -84,20 +85,23 @@ class Example extends Component {
       this.setState({serverData: fakeConcertData});
     },1000)
   }
+  
 
   render() {
     return (
       // Change back after
-      <div className="Example"> 
-        <h1>
-          Concerts
-        </h1>
-        <center>
-        {this.state.serverData.user &&
-         this.state.serverData.user.eventList.map(events =>
-          <ConcertDisplay events={events}/>)
-       	}
-        </center>
+      <div className="Example">
+      {this.state.serverData.user ? 
+        <div>
+          <h1> Concerts </h1>
+          <center>
+          {this.state.serverData.user.eventList.map(events =>
+            <ConcertDisplay events={events}/>)
+         	}
+          </center>
+        </div> : <button onClick={() => window.location='http://localhost:8888/login'}
+        style={{padding: '20px', 'fontSize': '50px', 'marginTop': '20px'}}> Sign in with Spotify </button>
+      }
       </div>
     );
   }	
