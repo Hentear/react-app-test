@@ -11,6 +11,12 @@
 # production
 /build
 
+# Apikey
+/src/apikey.js
+
+# Testing Calls
+/src/apidata.js
+
 # misc
 .DS_Store
 .env.local
